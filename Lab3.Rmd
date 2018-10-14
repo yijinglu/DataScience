@@ -36,3 +36,14 @@ gapminder %>%
     theme_bw() +
     labs(y = "life expectancy", x = "GDP per capita")
 ```
+
+```{r}
+gapminder %>%
+    filter(year == 2007) %>%
+    ggplot(aes(gdpPercap, lifeExp)) +
+    geom_point() +
+    #geom_text(aes(label = ifelse(gdpPercap > 40000 & continent == "Europe", as.character(country), " ")), color = "blue") +
+    geom_text(data = subset(gapminder, year == 2007 & gdpPercap > 40000 & continent == "Europe"), aes(label = country), color = "blue") +
+    labs(y = "life expectancy", x = "GDP per capita")
+    
+```
